@@ -1,16 +1,16 @@
 describe('Purchasing', () => {
     it('Ordering without authorization', () => {
-// Goes to the homepage
+// Go to the homepage
       cy.visit('https://www.demoblaze.com')
 // Open product menu
       cy.get('#itemc').click()
 // Add an item to the cart
-      cy.get('#tbodyid > div:nth-child(5) > div > div > h4 > a').click()
-      cy.get('#tbodyid > div.row > div > a').click()
-// Goes to the Cart
+      cy.get(':nth-child(10) > [data-layer="Content"]').click()
+      cy.get('[data-top="447.578125"]').click()
+// Go to the Cart
       cy.get('#cartur').click()
 // Make an order
-      cy.get('#page-wrapper > div > div.col-lg-1 > button').click()  
+      cy.get('[data-top="134.1875"]').click()
 // Fill out fields
       cy.get('#name').invoke('val', 'TestName')
       cy.get('#country').type('TestCountry')
