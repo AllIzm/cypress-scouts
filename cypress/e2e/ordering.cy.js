@@ -1,5 +1,5 @@
-describe('Ordering without authorization', () => {
-    it('Adding the product to the cart', () => {
+describe('Purchasing', () => {
+    it('Ordering without authorization', () => {
 // Goes to the homepage
       cy.visit('https://www.demoblaze.com')
 // Open product menu
@@ -12,10 +12,10 @@ describe('Ordering without authorization', () => {
 // Make an order
       cy.get('#page-wrapper > div > div.col-lg-1 > button').click()  
 // Fill out fields
-      cy.get('#name').type('TestName')
+      cy.get('#name').invoke('val', 'TestName')
       cy.get('#country').type('TestCountry')
       cy.get('#city').type('TestCity')
-      cy.get('#card').type('1234567887654321')
+      cy.get('#card').invoke('val','1234567887654321')
       cy.get('#month').type('May')
       cy.get('#year').type('2023')
 // Click Purchase button
