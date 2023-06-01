@@ -6,12 +6,10 @@ describe('Purchasing', () => {
 
 // Open product menu "Phones"
       cy.get('.list-group-item').contains('Phones').click()
-      cy.wait(2000)
-
+      
 // Go to the item description
       cy.contains('.hrefch', 'Iphone 6 32gb').click()
-      cy.wait(2000)
-      
+            
 // Check alert for adding an item to the cart
       cy.window().then((win) => {
             cy.stub(win, 'alert').as('winAlert')
@@ -31,11 +29,11 @@ describe('Purchasing', () => {
 
 // Fill out fields
       cy.get('#name').invoke('val', 'TestName')
-      cy.get('#country').type('TestCountry')
-      cy.get('#city').type('TestCity')
+      cy.get('#country').invoke('val','TestCountry')
+      cy.get('#city').invoke('val','TestCity')
       cy.get('#card').invoke('val','1234567887654321')
       cy.get('#month').invoke('val','May')
-      cy.get('#year').type('2023')
+      cy.get('#year').invoke('val','2023')
 
 // Click "Purchase" button
       cy.get ('.btn-primary').contains('Purchase').click()
@@ -44,9 +42,14 @@ describe('Purchasing', () => {
       cy.xpath('//*[@class="sweet-alert  showSweetAlert visible"]').should('be.visible')
 
 // Click "OK" button      
+      cy.wait(1000)
       cy.contains('.confirm', 'OK').click();
+
+// Check if main page open after purchase
+      cy.url().should('include', 'index.html')
     
 // Check if the Cart is empty
+      cy.get('#cartur').click()
       cy.xpath('//a[contains(@onclick, "deleteItem")]').should('not.exist') 
 
     })
