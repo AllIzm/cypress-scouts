@@ -2,7 +2,7 @@ describe('Purchasing', () => {
     it('Ordering without authorization', () => {
 
 // Go to the homepage
-      cy.visit('https://www.demoblaze.com')
+      cy.visit('/')
 
 // Open product menu "Phones"
       cy.get('.list-group-item').contains('Phones').click()

@@ -2,7 +2,7 @@ describe('Signing up', () => {
     it('Create New User', () => {
 
 // Goes to the homepage
-      cy.visit('https://www.demoblaze.com')
+      cy.visit('/')
 
 // Open Sign up pop-up
       cy.get('#signin2').should('be.visible').click()
