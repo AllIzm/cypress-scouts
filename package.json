@@ -1,13 +1,12 @@
 {
-  "dependencies": {
-    "cypress": "^12.13.0"
-  },
   "scripts": {
     "cyopen": "npx cypress open",
     "cyrun": "npx cypress run",
     "cyrun:chrome": "npm run cyrun -- --browser chrome"
   },
   "devDependencies": {
-    "@cypress/xpath": "^2.0.3"
+    "@cypress/xpath": "^2.0.3",
+    "@testing-library/cypress": "^9.0.0",
+    "cypress": "^12.14.0"
   }
 }
