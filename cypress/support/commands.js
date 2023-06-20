@@ -36,3 +36,21 @@ Cypress.Commands.add('mySuperRegistration', (username, password) => {
     cy.get('.btn-primary').contains('Sign up').click()      
 
 })
+
+Cypress.Commands.add('placeOrder', function () {
+
+        // Make an order
+        cy.findByRole('button', { name: /Place Order/i }).click()
+
+        // Fill out fields
+        cy.get('#name').invoke('val', 'TestName')
+        cy.get('#country').invoke('val', 'TestCountry')
+        cy.get('#city').invoke('val', 'TestCity')
+        cy.get('#card').invoke('val', '1234567887654321')
+        cy.get('#month').invoke('val', 'May')
+        cy.get('#year').invoke('val', '2023')
+
+        // Click "Purchase" button
+        cy.get('.btn-primary').contains('Purchase').click()
+        
+    })
