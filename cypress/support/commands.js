@@ -25,3 +25,14 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import '@testing-library/cypress/add-commands'
+
+Cypress.Commands.add('mySuperRegistration', (username, password) => {
+    
+    // Fill out fields
+    cy.get('#sign-username').invoke('val', username)
+    cy.get('#sign-password').invoke('val', password)
+
+    // Click Sign up button
+    cy.get('.btn-primary').contains('Sign up').click()      
+
+})
