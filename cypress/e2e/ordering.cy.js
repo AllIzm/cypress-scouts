@@ -19,6 +19,7 @@ describe('Purchasing', () => {
       // Open product menu
       cy.get('.list-group-item').contains(subject.category).click()
 
+      // Waiting for response
       cy.wait('@category')
 
       // Go to the item description
@@ -55,7 +56,11 @@ describe('Purchasing', () => {
 
       // Check if the Cart is empty
       cy.get('#cartur').click()
+      cy.url().should('include', '/cart')
+      cy.wait('@viewcart')
       cy.contains('Delete').should('not.exist')
+      cy.contains('Total').should('exist')
+    
     })
 
   })

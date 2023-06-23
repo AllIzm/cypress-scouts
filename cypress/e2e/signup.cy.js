@@ -1,45 +1,79 @@
-describe('Signing up', () => {
-      beforeEach ( () => {
-// Goes to the homepage
+describe('Sign up', () => {
+  beforeEach ( () => {
+    // Request
+    cy.intercept('POST', '/signup').as("signupUser")
+
+    // Goes to the homepage
     cy.visit('/')
 
-// Open Sign up pop-up
-    cy.get('#signin2').should('be.visible').click()
+  }) 
 
-// Check Sign up title      
-    cy.get('#signInModalLabel').should('have.text', 'Sign up')
-}) 
-
-// Test1 Successful Registration
-    it('Success Reg via UI', () => {
+  // Test 1 "Successful Registration"
+  it('Success Reg via UI', () => {
 
     const username = ('TestUser' + Date.now())
     const password = 'TestPassword'      
 
-// Commands function
-    cy.mySuperRegistration(username, password)
+    // Commands function
+    cy.userRegistration(username, password)
 
-// Check alert 'Sign up successful.'
+    // Check alert 'Sign up successful.'
     cy.window().then((win) => {
-    cy.stub(win, 'alert').as('winAlert')
-    cy.get('@winAlert').should('be.calledWith', 'Sign up successful.')
+      cy.stub(win, 'alert').as('winAlert')
+      // Click Sign up button
+      cy.get('.btn-primary').contains('Sign up').click()  
+      cy.get('@winAlert')
+        .should('be.calledWith', 'Sign up successful.')
     })
+
+    // Waiting for response
+    cy.wait('@signupUser')
+
   })
+
   
-// Test2 User-exist Registration
-    it('User-exist Reg', () => {
+  // Test 2 "User-exist Registration"
+  it('User-exist Reg', () => {
 
     const username = 'TestUser'
     const password = 'TestPassword'      
 
-// Commands function
-    cy.mySuperRegistration(username, password)
+    // Commands function
+    cy.userRegistration(username, password)
 
-// Check alert 'This user already exist.'
+    // Check alert 'This user already exist.'
     cy.window().then((win) => {
-    cy.stub(win, 'alert').as('winAlert')
-    cy.get('@winAlert').should('be.calledWith', 'This user already exist.')
+      cy.stub(win, 'alert').as('winAlert')
+      // Click Sign up button
+      cy.get('.btn-primary').contains('Sign up').click()
+      cy.get('@winAlert')
+        .should('be.calledWith', 'This user already exist.')
     })
+
+    // Waiting for response
+    cy.wait('@signupUser')
+
   })
+
+  
+  // Test 3 "Registration with blank form fields"
+  it('User Reg - blank fields', () => {
+
+    const username = ''
+    const password = ''      
+  
+    // Commands function
+    cy.userRegistration(username, password)
+  
+    // Check alert 'Please fill out Username and Password.'
+    cy.window().then((win) => {
+      cy.stub(win, 'alert').as('winAlert')
+      // Click Sign up button
+      cy.get('.btn-primary').contains('Sign up').click()
+      cy.get('@winAlert')
+        .should('be.calledWith', 'Please fill out Username and Password.')
+    })
+        
+  })    
   
 })

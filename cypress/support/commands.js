@@ -26,31 +26,30 @@
 
 import '@testing-library/cypress/add-commands'
 
-Cypress.Commands.add('mySuperRegistration', (username, password) => {
-    
+Cypress.Commands.add('userRegistration', (username, password) => {
+    // Open Sign up pop-up and check Sign up title 
+    cy.get('#signin2').should('be.visible').click()
+    cy.get('#signInModalLabel').should('have.text', 'Sign up')
+
     // Fill out fields
     cy.get('#sign-username').invoke('val', username)
     cy.get('#sign-password').invoke('val', password)
-
-    // Click Sign up button
-    cy.get('.btn-primary').contains('Sign up').click()      
-
+      
 })
 
 Cypress.Commands.add('placeOrder', function () {
+    // Make an order
+    cy.findByRole('button', { name: /Place Order/i }).click()
 
-        // Make an order
-        cy.findByRole('button', { name: /Place Order/i }).click()
+    // Fill out fields
+    cy.get('#name').invoke('val', 'TestName')
+    cy.get('#country').invoke('val', 'TestCountry')
+    cy.get('#city').invoke('val', 'TestCity')
+    cy.get('#card').invoke('val', '1234567887654321')
+    cy.get('#month').invoke('val', 'May')
+    cy.get('#year').invoke('val', '2023')
 
-        // Fill out fields
-        cy.get('#name').invoke('val', 'TestName')
-        cy.get('#country').invoke('val', 'TestCountry')
-        cy.get('#city').invoke('val', 'TestCity')
-        cy.get('#card').invoke('val', '1234567887654321')
-        cy.get('#month').invoke('val', 'May')
-        cy.get('#year').invoke('val', '2023')
-
-        // Click "Purchase" button
-        cy.get('.btn-primary').contains('Purchase').click()
+    // Click "Purchase" button
+    cy.get('.btn-primary').contains('Purchase').click()
         
-    })
+})
