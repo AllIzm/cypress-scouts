@@ -39,7 +39,7 @@ describe('Purchasing', () => {
       cy.wait('@viewcart')
 
       // Check if there is one item in the cart at least
-      cy.contains('Delete').should('have.length', 1)
+      cy.contains('Delete').should('have.length.at.least', 1)
 
       // Make an order with cy.commands
       cy.placeOrder()
@@ -58,9 +58,9 @@ describe('Purchasing', () => {
       cy.get('#cartur').click()
       cy.url().should('include', '/cart')
       cy.wait('@viewcart')
-      cy.contains('Delete').should('not.exist')
       cy.contains('Total').should('exist')
-    
+      cy.contains('Delete').should('not.exist')
+          
     })
 
   })

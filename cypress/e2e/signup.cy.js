@@ -15,19 +15,18 @@ describe('Sign up', () => {
     const password = 'TestPassword'      
 
     // Commands function
-    cy.userRegistration(username, password)
+    cy.registerUser(username, password)
 
     // Check alert 'Sign up successful.'
     cy.window().then((win) => {
       cy.stub(win, 'alert').as('winAlert')
       // Click Sign up button
-      cy.get('.btn-primary').contains('Sign up').click()  
+      cy.get('.btn-primary').contains('Sign up').click()
+      // Waiting for response
+      cy.wait('@signupUser')  
       cy.get('@winAlert')
         .should('be.calledWith', 'Sign up successful.')
     })
-
-    // Waiting for response
-    cy.wait('@signupUser')
 
   })
 
@@ -39,19 +38,18 @@ describe('Sign up', () => {
     const password = 'TestPassword'      
 
     // Commands function
-    cy.userRegistration(username, password)
+    cy.registerUser(username, password)
 
     // Check alert 'This user already exist.'
     cy.window().then((win) => {
       cy.stub(win, 'alert').as('winAlert')
       // Click Sign up button
       cy.get('.btn-primary').contains('Sign up').click()
+      // Waiting for response
+      cy.wait('@signupUser')      
       cy.get('@winAlert')
         .should('be.calledWith', 'This user already exist.')
     })
-
-    // Waiting for response
-    cy.wait('@signupUser')
 
   })
 
@@ -63,7 +61,7 @@ describe('Sign up', () => {
     const password = ''      
   
     // Commands function
-    cy.userRegistration(username, password)
+    cy.registerUser(username, password)
   
     // Check alert 'Please fill out Username and Password.'
     cy.window().then((win) => {

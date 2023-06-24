@@ -26,7 +26,7 @@
 
 import '@testing-library/cypress/add-commands'
 
-Cypress.Commands.add('userRegistration', (username, password) => {
+Cypress.Commands.add('registerUser', (username, password) => {
     // Open Sign up pop-up and check Sign up title 
     cy.get('#signin2').should('be.visible').click()
     cy.get('#signInModalLabel').should('have.text', 'Sign up')
