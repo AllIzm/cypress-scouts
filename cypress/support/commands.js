@@ -26,15 +26,16 @@
 
 import '@testing-library/cypress/add-commands'
 
-Cypress.Commands.add('registerUser', (username, password) => {
-    // Open Sign up pop-up and check Sign up title 
+Cypress.Commands.add('fillRegistrationFields', (username, password) => { 
+    // Open Sign up pop-up 
     cy.get('#signin2').should('be.visible').click()
+
+    // Check Sign up title
     cy.get('#signInModalLabel').should('have.text', 'Sign up')
 
     // Fill out fields
     cy.get('#sign-username').invoke('val', username)
-    cy.get('#sign-password').invoke('val', password)
-      
+    cy.get('#sign-password').invoke('val', password)  
 })
 
 Cypress.Commands.add('placeOrder', function () {
@@ -51,5 +52,4 @@ Cypress.Commands.add('placeOrder', function () {
 
     // Click "Purchase" button
     cy.get('.btn-primary').contains('Purchase').click()
-        
 })
