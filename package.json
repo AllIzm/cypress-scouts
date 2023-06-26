@@ -5,8 +5,7 @@
     "cyrun:chrome": "npm run cyrun -- --browser chrome"
   },
   "devDependencies": {
-    "@cypress/xpath": "^2.0.3",
     "@testing-library/cypress": "^9.0.0",
-    "cypress": "^12.14.0"
+    "cypress": "^12.15.0"
   }
 }
