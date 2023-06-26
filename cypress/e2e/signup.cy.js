@@ -5,17 +5,16 @@ describe('Sign up', () => {
 
     // Goes to the homepage
     cy.visit('/')
-
   }) 
 
   // Test 1 "Successful Registration"
-  it('Success Reg via UI', () => {
+  it('Successfully signs up', () => {
 
     const username = ('TestUser' + Date.now())
     const password = 'TestPassword'      
 
     // Commands function
-    cy.registerUser(username, password)
+    cy.fillRegistrationFields(username, password)
 
     // Check alert 'Sign up successful.'
     cy.window().then((win) => {
@@ -27,18 +26,16 @@ describe('Sign up', () => {
       cy.get('@winAlert')
         .should('be.calledWith', 'Sign up successful.')
     })
-
   })
-
   
   // Test 2 "User-exist Registration"
-  it('User-exist Reg', () => {
+  it('Should show signup error for existing user', () => {
 
     const username = 'TestUser'
     const password = 'TestPassword'      
 
     // Commands function
-    cy.registerUser(username, password)
+    cy.fillRegistrationFields(username, password)
 
     // Check alert 'This user already exist.'
     cy.window().then((win) => {
@@ -50,18 +47,16 @@ describe('Sign up', () => {
       cy.get('@winAlert')
         .should('be.calledWith', 'This user already exist.')
     })
-
   })
-
   
   // Test 3 "Registration with blank form fields"
-  it('User Reg - blank fields', () => {
+  it('Should display signup error with not filling fields', () => {
 
     const username = ''
     const password = ''      
   
     // Commands function
-    cy.registerUser(username, password)
+    cy.fillRegistrationFields(username, password)
   
     // Check alert 'Please fill out Username and Password.'
     cy.window().then((win) => {
@@ -70,8 +65,6 @@ describe('Sign up', () => {
       cy.get('.btn-primary').contains('Sign up').click()
       cy.get('@winAlert')
         .should('be.calledWith', 'Please fill out Username and Password.')
-    })
-        
-  })    
-  
+    }) 
+  })
 })
