@@ -39,9 +39,9 @@ describe('Purchasing', () => {
       cy.wait('@viewcart')
 
       // Check if there is one item in the cart at least
-      cy.contains('Delete').should('have.length.at.least', 1)
+      cy.expect('.success').to.have.length.at.least(1)
 
-      // Make an order with cy.commands
+      // Make an order
       cy.placeOrder()
 
       // Check notification for success order
@@ -60,9 +60,6 @@ describe('Purchasing', () => {
       cy.wait('@viewcart')
       cy.contains('Total').should('exist')
       cy.contains('Delete').should('not.exist')
-          
     })
-
   })
-
 })
