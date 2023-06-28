@@ -3,8 +3,8 @@
 
 [![E2E Tests](https://github.com/AllIzm/cypress-scouts/actions/workflows/cy.yaml/badge.svg)](https://github.com/AllIzm/cypress-scouts/actions/workflows/cy.yaml)
 
-## About
-Cypress-Scouts is the training project that show to how to write and execute E2E tests in Cypress from scratch.
+## Description
+Cypress-Scouts is the training project that show to how to write and execute E2E tests in Cypress.
 
 ## Demo Site 
 [Demoblaze](https://www.demoblaze.com/) website is a demo e-commerce website where user can purchase electronics products from [BlazeMeter](https://www.blazemeter.com/).
@@ -14,21 +14,26 @@ Cypress-Scouts is the training project that show to how to write and execute E2E
 
 **2.**	Deploying on GitHub and building a [CI workflow](https://github.com/AllIzm/cypress-scouts/tree/main/.github/workflows) with GitHub Actions so that the tests themselves run on the necessary triggers (manually, when new code is pushed to your repository, on a set schedule).
 
-## Deploying 
+## Deploy and run
 * Clone __*cypress-scouts*__ repository.
-* Install Cypress using the npm locally as a dev dependency *(the project root directory)*
+
+  **`git clone git@github.com:AllIzm/cypress-scouts.git`**
   
-  `npm install cypress`
+* Install Cypress using the npm locally as a dev dependency *from your project root*
+  
+  **`npm install cypress`**
    
-* Open the Cypress for running and debugging tests in headed mode *(the project root directory)*
+* Open the Cypress for running and debugging tests in headed mode *from your project root*
  
-  `npx cypress open`
+  **`npx cypress open`**
 
-   * *Note!* Using Cypress for the first time choose E2E Testing Type configuration.
+   * Choose E2E Testing *(Note! Using Cypress for the first time add and set up configuration files)*
+   * Choose one of compatible browsers Cypress found on your system and click on "Start E2E testing in ..."
+   * To run any test click on them.
 
-* Open the Cypress for running and debugging tests in headless mode *(the project root directory)*
+* Open the Cypress for running and debugging tests in headless mode *from your project root*
 
-  `npx cypress run`
+  **`npx cypress run`**
 
 
 
